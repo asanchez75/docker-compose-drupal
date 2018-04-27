@@ -1,0 +1,23 @@
+version: '3'
+services:
+    drupal:
+      build: .
+      ports:
+        - 8081:80
+      volumes:
+        - ./html:/var/www/html/
+      restart: always
+      tty: true
+      links:
+        - mysql
+    mysql:
+        image: mysql:5.6
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: PASSWORD_HERE
+        volumes:
+            - "./mysql/data:/var/lib/mysql"
+            - "./mysql/backup:/backup"
+        ports:
+            - "3316:3306"
+
