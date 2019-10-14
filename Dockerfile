@@ -15,5 +15,5 @@ COPY drupal-*.ini /usr/local/etc/php/conf.d/
 # Add if the document root of the Drupal installation will be  /var/www/html/web
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
-RUN apt-get update && apt-get install -y mysql-client
+RUN apt-get update && apt-get install -y mariadb-client
 
