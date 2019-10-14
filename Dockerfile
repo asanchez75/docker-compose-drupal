@@ -1,7 +1,7 @@
 FROM php:7.1-apache
 MAINTAINER Adam Sanchez <a.sanchez75@gmail.com>
 
-VOLUME /var/www/html
+VOLUME /var/www/html/web
 
 RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libpq-dev libxml2-dev openssl libssl-dev \
 	&& docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
