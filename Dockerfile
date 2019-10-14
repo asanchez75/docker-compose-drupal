@@ -36,3 +36,12 @@ RUN cd /usr/local/src/drush && composer update && composer install
 
 RUN apt-get update && apt-get install -y mariadb-client
 
+# Drupal
+RUN cd / && composer create-project drupal-composer/drupal-project:8.x-dev /drupal-8.x --stability dev --no-interaction && \
+    cd /drupal-8.x/web && composer require drupal/console:~1.0 --prefer-dist --optimize-autoloader --no-plugins --no-scripts
+
+COPY init.sh /init.sh
+
+RUN chmod u+x /init.sh
+
+CMD ["/init.sh"]
