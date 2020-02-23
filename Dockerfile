@@ -37,8 +37,17 @@ RUN cd /usr/local/src/drush && composer update && composer install
 RUN apt-get update && apt-get install -y mariadb-client
 
 # Drupal
-RUN cd / && composer create-project drupal-composer/drupal-project:8.x-dev /drupal-8.x --stability dev --no-interaction && \
-    cd /drupal-8.x/web && composer require drupal/console:~1.0 --prefer-dist --optimize-autoloader --no-plugins --no-scripts
+RUN cd / && composer create-project drupal-composer/drupal-project:8.x-dev /drupal-8.x --stability dev --no-interaction 
+
+# Drupal console
+
+RUN composer require drupal/console:~1.0 --prefer-dist --optimize-autoloader
+
+# Drupal console launcher
+
+RUN curl https://drupalconsole.com/installer -L -o drupal.phar && \
+    mv drupal.phar /usr/local/bin/drupal && \
+    chmod +x /usr/local/bin/drupal
 
 COPY init.sh /init.sh
 

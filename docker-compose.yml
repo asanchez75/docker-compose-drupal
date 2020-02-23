@@ -5,7 +5,7 @@ services:
         volumes:
             - "./html:/var/www/html/web"
         ports:
-            - "88:80"
+            - "80:80"
         restart: always
         privileged: true
         environment:
@@ -20,9 +20,12 @@ services:
             MYSQL_ROOT_PASSWORD: 123456
             MYSQL_DATABASE: db
         volumes:
-            - "./mysql/data:/var/lib/mysql"
-            - "./mysql/backup:/backup"
+            - "data:/var/lib/mysql"
+            - "backup:/backup"
 
         ports:
             - "3313:3306"
+volumes:
+    data:
+    backup:
 
